@@ -1,6 +1,6 @@
 // Mis Finanzas: permite abrir la app sin internet.
 // La página principal se pide primero a internet (para recibir actualizaciones) y, si no hay conexión, sale de la copia guardada.
-const CACHE = 'mis-finanzas-v1';
+const CACHE = 'mis-finanzas-v2';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/icon-maskable-512.png'];
 
 self.addEventListener('install', e => {
@@ -19,7 +19,7 @@ self.addEventListener('fetch', e => {
 
   if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(req).then(res => {
+      fetch(req, { cache: 'no-cache' }).then(res => {
         const copy = res.clone();
         caches.open(CACHE).then(c => c.put('index.html', copy));
         return res;
