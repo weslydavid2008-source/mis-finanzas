@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>Mis Finanzas</title>
 <style>
-:root{--hb:0px;
+:root{--hb:0px;--gap:0px;
   --bg:#f2f2f7; --card:#ffffff; --card2:#f7f7fa; --text:#111216; --muted:#6b6f7b; --line:#e3e4ea;
   --accent:#0a84ff; --green:#1fae5b; --red:#e5484d; --amber:#e8a317; --violet:#7c5cff;
   --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.05);
@@ -61,16 +61,16 @@ h2 button{color:var(--accent);text-transform:none;letter-spacing:0;font-size:14p
 .stat small{color:var(--muted);font-size:12px;font-weight:600}
 .stat b{display:block;font-size:18px;margin-top:2px}
 /* tab bar */
-nav.tabs{position:fixed;left:0;right:0;bottom:var(--hb);background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:20}
+nav.tabs{position:fixed;left:0;right:0;bottom:calc(var(--hb) - var(--gap));background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:20}
 nav.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--muted);padding:4px 0}
 nav.tabs button .e{font-size:22px;filter:grayscale(1);opacity:.7}
 nav.tabs button.on{color:var(--accent)}
 nav.tabs button.on .e{filter:none;opacity:1}
-.fab{position:fixed;right:max(18px,calc(50% - 262px));bottom:calc(78px + var(--hb) + env(safe-area-inset-bottom));width:58px;height:58px;border-radius:50%;background:var(--accent);color:#fff;font-size:32px;box-shadow:0 8px 24px rgba(10,132,255,.45);z-index:21;display:grid;place-items:center}
+.fab{position:fixed;right:max(18px,calc(50% - 262px));bottom:calc(78px + var(--hb) - var(--gap) + env(safe-area-inset-bottom));width:58px;height:58px;border-radius:50%;background:var(--accent);color:#fff;font-size:32px;box-shadow:0 8px 24px rgba(10,132,255,.45);z-index:21;display:grid;place-items:center}
 /* sheet */
-.back{position:fixed;inset:0;padding-bottom:var(--hb);background:rgba(0,0,0,.42);z-index:40;display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .5s ease,visibility 0s linear .7s}
+.back{position:fixed;inset:0;bottom:calc(0px - var(--gap));padding-bottom:var(--hb);background:rgba(0,0,0,.42);z-index:40;display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .5s ease,visibility 0s linear .7s}
 .back.show{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .5s ease,visibility 0s}
-.sheet{background:var(--bg);width:100%;max-width:560px;border-radius:22px 22px 0 0;max-height:calc(100vh - var(--hb) - env(safe-area-inset-top) - 28px);max-height:calc(100dvh - var(--hb) - env(safe-area-inset-top) - 28px);overflow:auto;padding:10px 16px calc(20px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .68s cubic-bezier(.22,.8,.24,1);will-change:transform}
+.sheet{background:var(--bg);width:100%;max-width:560px;border-radius:22px 22px 0 0;max-height:calc(100vh + var(--gap) - var(--hb) - env(safe-area-inset-top) - 28px);max-height:calc(100dvh + var(--gap) - var(--hb) - env(safe-area-inset-top) - 28px);overflow:auto;padding:10px 16px calc(20px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .68s cubic-bezier(.22,.8,.24,1);will-change:transform}
 .back.show .sheet{transform:none}
 .sheet.swap>*{animation:swapIn .45s cubic-bezier(.22,.8,.24,1) both}
 @keyframes swapIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -107,7 +107,7 @@ button.item:active{background:var(--card2);transform:scale(.985)}
 .btn.danger{background:var(--card);color:var(--red)}
 .note{font-size:13px;color:var(--muted);padding:4px 6px;line-height:1.4}
 .banner{font-size:13px;padding:9px 12px;border-radius:12px;background:color-mix(in srgb,var(--amber) 18%,var(--card));margin:6px 0}
-.toast{position:fixed;left:50%;bottom:calc(150px + var(--hb) + env(safe-area-inset-bottom));transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:60;opacity:0;transition:.25s;pointer-events:none}
+.toast{position:fixed;left:50%;bottom:calc(150px + var(--hb) - var(--gap) + env(safe-area-inset-bottom));transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:60;opacity:0;transition:.25s;pointer-events:none}
 .toast.show{opacity:1}
 .donutwrap{display:flex;gap:14px;align-items:center}
 .legend{flex:1;min-width:0;font-size:14px}
@@ -206,6 +206,7 @@ let presuView = 'presu';
 
 // ---------- almacenamiento (en el celular + Google Drive) ----------
 const LS_KEY='misfinanzas.v1';
+const APP_VERSION='1.5';
 const APP_URL=location.origin+location.pathname.replace(/index\.html$/,'');
 let db=null, userId=null, remoteReady=true, mode='local';
 const dirty = new Set(); let saving=false;
@@ -636,7 +637,7 @@ function vAjustes(){
   h+='<h2>Mis tarjetas</h2><div class="list">'+withCard.map(a=>'<button class="item" data-vcard="'+a.id+'">'+icHtml(a)+'<div class="mid"><div class="t">'+esc(a.name)+'</div><div class="s">'+(isCredit(a)?'Crédito':'Débito')+(a.brand?' · '+esc(a.brand):'')+(a.last4?' · •••• '+esc(a.last4):'')+'</div></div><span class="mut">🔒 ›</span></button>').join('')
     +'<button class="item" data-act="accounts"><div class="ic">➕</div><div class="mid"><div class="t">Agregar una tarjeta</div><div class="s">Entra a la cuenta (Nequi, banco…) y llena "Tarjeta débito", o crea una tarjeta de crédito</div></div><span class="mut">›</span></button></div>';
   h+='<div class="list" style="margin-top:12px"><button class="item" id="vSettings"><div class="ic">🔒</div><div class="mid"><div class="t">Clave de la bóveda</div><div class="s">'+(vaultExists()?'Cambiar la clave que protege los números de tus tarjetas':'Se crea al guardar el número de una tarjeta')+'</div></div><span class="mut">›</span></button></div>';
-  h+='<div class="note" style="margin-top:14px">'+n+' movimientos guardados en este celular'+(gc.connected?' y en tu Google Drive.':'.')+'</div>';
+  h+='<div class="note" style="margin-top:14px">Versión '+APP_VERSION+(screenInfo?' · '+screenInfo:'')+' · '+n+' movimientos guardados en este celular'+(gc.connected?' y en tu Google Drive.':'.')+'</div>';
   h+='<h2>Pregunta automática al pagar</h2><div class="card note" style="font-size:14px">Copia el enlace de la cuenta y pégalo en una automatización de la app <b>Atajos</b> (paso a paso en el chat). Cuando cierres esa app, Mis Finanzas se abre y te pregunta por el pago.</div><div class="list">'+S.meta.accounts.map(a=>{ const u=APP_URL+'#gasto-'+slug(a.name); return '<button class="item" data-copy="'+esc(u)+'">'+icHtml(a)+'<div class="mid"><div class="t">'+esc(a.name)+'</div><div class="s">'+esc(u)+'</div></div><span style="color:var(--accent);font-weight:600;font-size:14px">Copiar</span></button>'; }).join('')+'</div>';
   h+='<h2>Instalar en el iPhone</h2><div class="card note" style="font-size:14px">Abre este enlace en <b>Safari</b>, toca el botón <b>Compartir</b> (el cuadrado con la flecha hacia arriba, en la barra de abajo) y elige <b>Agregar a pantalla de inicio</b>. Te queda un ícono como cualquier app.</div>';
   return h;
@@ -665,7 +666,7 @@ function bindView(){
   if(gq('vSettings')) gq('vSettings').onclick=openVaultSettings;
   v.querySelectorAll('[data-vcard]').forEach(b=>b.onclick=()=>openVault(b.dataset.vcard));
   v.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{ try{ await navigator.clipboard.writeText(b.dataset.copy); toast('Enlace copiado ✓'); }catch(e){ toast('Mantén presionado el enlace para copiarlo'); } });
-  v.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>({accounts:openAccounts,cats:openCats,export:openExport,import:openImport,wipe:openWipe,gomovs:()=>{tab='movs';render();},gooblig:()=>{tab='oblig';render();window.scrollTo(0,0);},newdebt:()=>editDebt(null),newacc:()=>editAccount(null,true),newgoal:()=>editGoal(null)})[b.dataset.act]());
+  v.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>({accounts:openAccounts,cats:openCats,export:openExport,import:openImport,wipe:openWipe,gomovs:()=>{tab='movs';render();},gooblig:()=>{tab='oblig';render();toTop();},newdebt:()=>editDebt(null),newacc:()=>editAccount(null,true),newgoal:()=>editGoal(null)})[b.dataset.act]());
 }
 
 // ---------- hoja (modal) ----------
@@ -1050,7 +1051,8 @@ function openWipe(){
 }
 
 // ---------- navegación ----------
-document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{ tab=b.dataset.tab; render(); window.scrollTo(0,0); });
+function toTop(){ window.scrollTo(0,0); }
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{ tab=b.dataset.tab; render(); toTop(); });
 $('#mPrev').onclick=()=>{ curMonth=shiftMonth(curMonth,-1); render(); };
 $('#mNext').onclick=()=>{ curMonth=shiftMonth(curMonth,1); render(); };
 $('#fab').onclick=()=>{ if(tab==='oblig') editDebt(null); else if(tab==='presu'&&presuView==='metas') editGoal(null); else openTx(null); };
@@ -1097,6 +1099,18 @@ try{
   const io=new IntersectionObserver(es=>{ const e=es[es.length-1]; const h=e.boundingClientRect.height||240; let hidden=e.isIntersecting? h-e.intersectionRect.height : 160; hidden=Math.max(0,Math.min(160,Math.round(hidden))); if(hidden<4) hidden=0; document.documentElement.style.setProperty('--hb',hidden+'px'); },{threshold:Array.from({length:121},(_,i)=>i/120)});
   io.observe(probe);
 }catch(e){}
+let screenInfo='';
+function fixGap(){
+  try{
+    const standalone = navigator.standalone===true || (window.matchMedia&&matchMedia('(display-mode: standalone)').matches);
+    const portrait = window.innerHeight>window.innerWidth;
+    const real = portrait ? Math.max(screen.height,screen.width) : Math.min(screen.height,screen.width);
+    let gap = standalone ? real - window.innerHeight : 0;
+    if(!(gap>0 && gap<120)) gap=0;
+    screenInfo='Pantalla '+real+' · vista '+window.innerHeight+(standalone?' · instalada':'')+(gap?' · diferencia '+gap:'');
+  }catch(e){}
+}
+fixGap(); window.addEventListener('resize',fixGap); window.addEventListener('orientationchange',()=>setTimeout(fixGap,300)); document.addEventListener('visibilitychange',()=>setTimeout(fixGap,200));
 lsLoad();
 render();
 gdHandleRedirect();
