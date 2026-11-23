@@ -61,7 +61,7 @@ h2 button{color:var(--accent);text-transform:none;letter-spacing:0;font-size:14p
 .stat small{color:var(--muted);font-size:12px;font-weight:600}
 .stat b{display:block;font-size:18px;margin-top:2px}
 /* tab bar */
-nav.tabs{position:fixed;left:0;right:0;bottom:calc(var(--hb) - var(--gap));background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:20}
+nav.tabs{position:fixed;left:0;right:0;bottom:calc(var(--hb) - var(--gap));background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:20}
 nav.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--muted);padding:4px 0}
 nav.tabs button .e{font-size:22px;filter:grayscale(1);opacity:.7}
 nav.tabs button.on{color:var(--accent)}
@@ -206,7 +206,7 @@ let presuView = 'presu';
 
 // ---------- almacenamiento (en el celular + Google Drive) ----------
 const LS_KEY='misfinanzas.v1';
-const APP_VERSION='1.5';
+const APP_VERSION='1.6';
 const APP_URL=location.origin+location.pathname.replace(/index\.html$/,'');
 let db=null, userId=null, remoteReady=true, mode='local';
 const dirty = new Set(); let saving=false;
