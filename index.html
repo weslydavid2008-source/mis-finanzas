@@ -75,6 +75,7 @@ nav.tabs button.on .e{filter:none;opacity:1}
 .sheet.swap>*{animation:swapIn .45s cubic-bezier(.22,.8,.24,1) both}
 @keyframes swapIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .sheet .btn.stick{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom));z-index:5;box-shadow:0 10px 28px rgba(0,0,0,.35),0 0 0 6px var(--bg)}
+#sbCover{position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top);background:var(--bg);z-index:30;pointer-events:none}
 button.item{transition:background-color .28s ease,transform .28s ease}
 button.item:active{background:var(--card2);transform:scale(.985)}
 #view{animation:viewIn .4s ease both}
@@ -124,6 +125,7 @@ textarea{width:100%;min-height:120px;border-radius:12px;border:1px solid var(--l
 </style>
 </head>
 <body>
+<div id="sbCover" aria-hidden="true"></div>
 <div class="wrap">
   <header class="top">
     <h1 id="title">Inicio</h1>
@@ -206,7 +208,7 @@ let presuView = 'presu';
 
 // ---------- almacenamiento (en el celular + Google Drive) ----------
 const LS_KEY='misfinanzas.v1';
-const APP_VERSION='1.6';
+const APP_VERSION='1.7';
 const APP_URL=location.origin+location.pathname.replace(/index\.html$/,'');
 let db=null, userId=null, remoteReady=true, mode='local';
 const dirty = new Set(); let saving=false;
